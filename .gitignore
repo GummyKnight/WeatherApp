@@ -1,0 +1,94 @@
+# =====================
+# Java compiled files
+# =====================
+*.class
+
+# =====================
+# Build output
+# =====================
+/out/
+/target/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# =====================
+# Package files
+# =====================
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# =====================
+# Log and temp files
+# =====================
+*.log
+*.tmp
+hs_err_pid*
+replay_pid*
+
+# =====================
+# Environment & secret files
+# =====================
+.env
+*.key
+*.pem
+*.properties
+
+# =====================
+# IDE and tool configs
+# =====================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Spring Tool Suite (STS) / Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans/
+.sts4-cache/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# =====================
+# Mobile/BlueJ (optional, only if used)
+# =====================
+*.ctxt
+.mtj.tmp/
+
+# =====================
+# OS-generated files
+# =====================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =====================
+# Maven wrapper binary (optional, not always needed in repo)
+# =====================
+.mvn/wrapper/maven-wrapper.jar
+
+# =====================
+# Misc (optional – remove if not needed)
+# =====================
+HELP.md
