@@ -31,7 +31,6 @@ public class WeatherService {
             cityEntityRepo.saveAll(cityEntity);
             cityEntity.clear();
         }
-
     }
     private List<CityEntity> buildCityList(WeatherApiCall recordDto){
         List<CityEntity> cityEntity = new ArrayList<>();
@@ -46,7 +45,7 @@ public class WeatherService {
         return "http://api.openweathermap.org/data/2.5/forecast?q="+
                 city+
                 "&appid="+
-                ConfigWeatherApp.API_KEY+
+                ConfigWeatherApp.getApiKey()+
                 "&units=metric&cnt="+
                 ConfigWeatherApp.API_CMT;
     }

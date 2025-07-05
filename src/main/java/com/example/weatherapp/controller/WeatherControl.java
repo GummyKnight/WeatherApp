@@ -17,7 +17,6 @@ public class WeatherControl {
         this.cityEntityService = cityEntityService;
         this.weatherService = weatherService;
     }
-
     @GetMapping("/build")
     public void buildWeather(){
         weatherService.buildWeeklyForecastForEachCities();
