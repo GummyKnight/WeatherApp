@@ -15,6 +15,7 @@ public record HourlyList(
         int visibility,
         double pop,
         Rain rain,
+        Snow snow,
         Sys sys,
         String dt_txt) {
 }
