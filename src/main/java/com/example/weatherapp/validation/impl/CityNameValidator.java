@@ -4,16 +4,11 @@ import com.example.weatherapp.model.enums.CityName;
 import com.example.weatherapp.validation.annotation.ValidCityName;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import java.util.EnumSet;
 
-import java.util.Arrays;
-
-public class CityNameValidator implements ConstraintValidator<ValidCityName,String> {
+public class CityNameValidator implements ConstraintValidator<ValidCityName,CityName> {
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (value == null) {
-            return true;
-        }
-        return Arrays.stream(CityName.values())
-                .anyMatch(city -> city.name().equalsIgnoreCase(value));
+    public boolean isValid(CityName value, ConstraintValidatorContext context) {
+        return value == null || EnumSet.allOf(CityName.class).contains(value);
     }
 }

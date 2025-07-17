@@ -1,5 +1,6 @@
 package com.example.weatherapp.entity;
 
+import com.example.weatherapp.model.enums.CityName;
 import com.example.weatherapp.validation.annotation.ValidCityName;
 import com.example.weatherapp.validation.annotation.ValidConditionID;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,10 +21,12 @@ public class CityEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "city_name",nullable = false)
-    @NotBlank(message = "City name cannot be blank")
+    @NotNull(message = "City name cannot be null")
     @ValidCityName//Custom Validation Enum List -> model.enums.CityName
-    private String name;
+    private CityName name;
 
     @Column(nullable = false)
     @JsonFormat(pattern = "dd-MM-yyyy")
@@ -47,7 +50,9 @@ public class CityEntity {
     @NotNull(message = "Humidity cannot be null")
     private Integer humidity;
 
+
     @Column(name = "condition_id")
+    @NotNull(message = "Condition ID cannot be null")
     @ValidConditionID//Custom Validation Enum List -> model.enums.ConditionID
     private Integer conditionId;
 
@@ -99,7 +104,7 @@ public class CityEntity {
     private Double threeHourSnow;
 
     @Builder
-    public CityEntity(String name, LocalDate date, LocalTime time, double feelsTemp,
+    public CityEntity(CityName name, LocalDate date, LocalTime time, double feelsTemp,
                       int humidity, Integer conditionId, int clouds,
                       double windSpeed, int windDeg, double windGust,
                       int visibility, double pop, Double threeHourRain, Double threeHourSnow) {

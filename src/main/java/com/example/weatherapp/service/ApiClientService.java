@@ -16,12 +16,14 @@ import org.springframework.web.client.RestTemplate;
 public class ApiClientService {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final DtoValidationService dtoValidationService;
     private static final Logger log = LoggerFactory.getLogger(ApiClientService.class);
 
 
-    public ApiClientService(RestTemplate restTemplate, ObjectMapper objectMapper) {
+    public ApiClientService(RestTemplate restTemplate, ObjectMapper objectMapper, DtoValidationService dtoValidationService) {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
+        this.dtoValidationService = dtoValidationService;
     }
     private WeatherApiCall fetchWeatherData(String apiUrl, String cityTable) {
         try {
@@ -37,7 +39,9 @@ public class ApiClientService {
     }
     public WeatherApiCall fetchWeather(String cityTable){
         String apiUrl = buildingApiUrl(cityTable);
-        return fetchWeatherData(apiUrl, cityTable);
+        WeatherApiCall dto = fetchWeatherData(apiUrl, cityTable);
+        dtoValidationService.validateWeatherDto(dto);
+        return dto;
     }
     private String buildingApiUrl(String cityTable){
         return "http://api.openweathermap.org/data/2.5/forecast?q="+

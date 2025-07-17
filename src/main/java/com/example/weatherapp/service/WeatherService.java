@@ -1,14 +1,13 @@
 package com.example.weatherapp.service;
 
-import com.example.weatherapp.config.ConfigWeatherApp;
-import com.example.weatherapp.entity.CityEntity;
-import com.example.weatherapp.exception.InvalidDataException;
-import com.example.weatherapp.model.dto.WeatherApiCall;
-import com.example.weatherapp.model.enums.CityName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
+import com.example.weatherapp.entity.CityEntity;
+import com.example.weatherapp.model.enums.CityName;
+import com.example.weatherapp.config.ConfigWeatherApp;
+import com.example.weatherapp.model.dto.WeatherApiCall;
+import com.example.weatherapp.exception.InvalidDataException;
 @Service
 public class WeatherService {
     private final ApiClientService apiClientService;

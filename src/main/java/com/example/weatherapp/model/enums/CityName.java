@@ -1,5 +1,7 @@
 package com.example.weatherapp.model.enums;
 
+import java.util.Arrays;
+
 public enum CityName {
     Adana,
     Adıyaman,
@@ -81,5 +83,16 @@ public enum CityName {
     Karabük,
     Kilis,
     Osmaniye,
-    Düzce,
+    Düzce;
+
+    public static CityName fromStringtoEnum(String cityName){
+        if (cityName == null || cityName.isBlank()) {
+            throw new IllegalArgumentException("City name cannot be null or blank");
+        }
+        String normalizedInput = cityName.trim();
+        return Arrays.stream(CityName.values())
+                .filter(c -> c.name().equalsIgnoreCase(normalizedInput))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid city name: " + cityName));
+    }
 }

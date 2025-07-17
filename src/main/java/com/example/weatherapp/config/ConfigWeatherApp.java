@@ -24,7 +24,7 @@ public class ConfigWeatherApp {
         return API_KEY;
     }
     public static final int API_CMT= 40;     // We ask api for the weather, about next 3 hour ahead; each 3 hourly interval is making up 8 forecast a day. (24/3=8)
-    public static final int API_LIMIT = 2;  // This goes further since we ask the next 5 day instead, each 3 hourly interval 8 a day and for 5 days it makes up 40,
+    public static final int API_LIMIT = 60;  // This goes further since we ask the next 5 day instead, each 3 hourly interval 8 a day and for 5 days it makes up 40,
                                            // ...which is 5*8=40. Cmt limit is between 1-40. All cases between that numbers are 1 api call only (which is important since
                                           // ...our limit is 60 call per minute yet 40cmt is one json call anyway.)
     @Bean

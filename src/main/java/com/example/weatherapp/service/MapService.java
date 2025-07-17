@@ -3,6 +3,7 @@ package com.example.weatherapp.service;
 import com.example.weatherapp.entity.CityEntity;
 import com.example.weatherapp.exception.InvalidDataException;
 import com.example.weatherapp.model.dto.WeatherApiCall;
+import com.example.weatherapp.model.enums.CityName;
 import com.example.weatherapp.validation.WeatherDataValidator;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
@@ -17,7 +18,10 @@ public class MapService {
 
         var item = recordDto.hourlyList().get(i);
 
-        String name = convertCityName(recordDto.city().name());
+        String rawName = recordDto.city().name();
+        String cleanName = cleanCityName(rawName);
+        CityName cityEnum = CityName.fromStringtoEnum(cleanName);
+
         LocalDate date = convertUnixToDate(item.dt());
         LocalTime time = convertUnixToTime(item.dt());
         double feelsTemp = item.details().feels_like();
@@ -33,7 +37,7 @@ public class MapService {
         Double snow = (item.snow() != null) ? item.snow().threeHour() : null;
 
         return CityEntity.builder()
-                .name(name)
+                .name(cityEnum)
                 .date(date)
                 .time(time)
                 .feelsTemp(feelsTemp)
@@ -49,7 +53,7 @@ public class MapService {
                 .threeHourSnow(snow)
                 .build();
     }
-    private String convertCityName(String cityName){
+    private String cleanCityName(String cityName){
         int spaceIndex = cityName.indexOf(" ");
         return (spaceIndex != -1) ? cityName.substring(0, spaceIndex) : cityName;
     }
